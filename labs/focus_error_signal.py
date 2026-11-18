@@ -20,7 +20,9 @@ def mean_axis_difference(detector_mm: float, fx_mm: float = 100.0, fy_mm: float 
     differences = []
     for height in heights:
         ray = np.array([height, 0.0])
-        differences.append(abs((system_x @ ray)[0] - (system_y @ ray)[0]))
+        x_radius = abs((system_x @ ray)[0])
+        y_radius = abs((system_y @ ray)[0])
+        differences.append(abs(x_radius - y_radius))
     return float(np.mean(differences))
 
 
